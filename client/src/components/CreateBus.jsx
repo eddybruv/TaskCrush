@@ -15,7 +15,7 @@ const CreateBus = () => {
                     <CustomInputs placeholder={"Price"}/>
                     <CustomInputs placeholder={"Time of departure"}/>
                     <CustomInputs placeholder={"Bus number"}/>
-                    <Button btnText={"Submit"} />
+                    <Button btnText={"Submit"} path="/" />
                 </form>
             </div>
         </section>

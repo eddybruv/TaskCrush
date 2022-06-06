@@ -13,3 +13,6 @@ button{
     border: solid 2.5px #02296D;
     /* border: solid 2.5px rgba(#02296D, .03); */
     }
+    .link{
+        text-decoration: none;
+    }

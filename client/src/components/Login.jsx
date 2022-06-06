@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link} from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import './componentStyles/Form.css'
 import CustomInputs from './CustomInputs'
 import Button from './Button'
@@ -14,9 +14,9 @@ const Login = () => {
             <h1>Login</h1>
             <CustomInputs placeholder={"Email"}/>
             <CustomInputs placeholder={"Password"}/>
-            <Button btnText={"Login"}/>
-           {/* <Button btnText={"Login"} path = {"/UserPanel"}/> */}
-           {/* <Link to="/Login">Sign Up</Link> */}
+            {/* <Button btnText={"Login"}/> */}
+           <Button btnText={"Login"} path = {"/user-panel"}/>
+           <Link className="linkk" to="/register">Sign Up</Link>
           </form>
       </div>
     </div>

@@ -17,7 +17,7 @@ const Register = () => {
             <CustomInputs placeholder={"Last Name"}/>
             <CustomInputs placeholder={"Email"}/>
             <CustomInputs placeholder={"Password"}/>
-            <Button btnText={"Register"} path={"/Login"} />
+            <Button btnText={"Register"} path={"/"} />
           </form>
       </div>
     </div>
