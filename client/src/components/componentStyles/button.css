@@ -1,0 +1,18 @@
+button{
+    background: #02296D;
+    width: 10em;
+    height: 4em;
+    border-radius: 2em;
+    justify-content: space-around;
+    margin-top: 2em;
+    transition: all .3s ease;
+    }
+    button:hover{
+    background: #fff;
+    color: #02296D;
+    border: solid 2.5px #02296D;
+    /* border: solid 2.5px rgba(#02296D, .03); */
+    }
+    .link{
+        text-decoration: none;
+    }
