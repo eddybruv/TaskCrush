@@ -1,0 +1,69 @@
+.body{
+    background: #e9ecef;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    gap: 20em;
+    align-items: center;
+    width: 90vw;
+    padding-right: 4em;
+    padding-left: 7em;
+    height: 25vh;
+    /* padding: 2em; */
+    background: #ced4da;
+}
+
+.btn{
+    background: #02296D;
+    width: 12em;
+    height: 4em;
+    border-radius: 2em;
+    justify-content: space-around;
+    /* margin-right: 4em; */
+}
+h2{
+    justify-content: space-around;
+}
+.journeys{
+    margin-top: 2em;
+    /* margin-bottom: 1.3em; */
+    /* top: 2em; */
+    display: flex;
+    gap: 1em;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+h1{
+    color: #000;
+    font-size: 3.2em;
+}
+section{
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+table{
+    width: 80vw;
+    /* height: 7em; */
+    /* border: solid 2px blue; */
+    border-collapse: collapse;
+    
+
+}
+tr{
+    height: 2.5em;
+    border-bottom: solid 2px #ced4da;
+}
+td{
+    width: 6em;
+    height: 0.8em;
+    background: #adb5bd;
+    /* border: solid 2px red; */
+}
+th{
+    background: #dee2e6;
+}

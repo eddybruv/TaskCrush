@@ -1,0 +1,37 @@
+section{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+    .fform{
+    /* border: solid 3px red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2.5em;
+    box-shadow: 10px 8px 17px #888888;
+    
+    }
+    .busCreationForm{
+    width: 30em;
+    height: 37em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 2em;
+    padding: 2em;
+    /* border: solid 2px blue; */
+    /* justify-content: center; */
+    align-items: center;
+    }
+    .row{
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    }
+    
+    
