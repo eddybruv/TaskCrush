@@ -13,8 +13,8 @@ router.post("/create-bus", (req, res) => {
   res.json({ message: "bus created", data: newBus });
 });
 
-router.get("/get-buses", (req, res) => {
-  const buses = BusModel.find({});
+router.get("/get-buses", async (req, res) => {
+  const buses = await BusModel.find({});
   buses.length !== 0
     ? res.json({ data: buses })
     : res.json({ message: "no buses" });
