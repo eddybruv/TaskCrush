@@ -5,7 +5,7 @@ const TripModel = require("../models/Trip.model");
 
 const router = express.Router();
 
-router.post("/create-trip", (req, res) => {
+router.post("/create-trip", async (req, res) => {
   const {
     bus_id,
     departure,
@@ -13,10 +13,10 @@ router.post("/create-trip", (req, res) => {
     price,
     dept_time,
     arr_time,
-    reserved_seats: [],
+    reserved_seats,
   } = req.body;
 
-  const newTrip = new TripModel({
+  const newTrip = await new TripModel({
     bus_id,
     departure,
     destination,
@@ -27,7 +27,14 @@ router.post("/create-trip", (req, res) => {
   });
 
   newTrip.save();
-  res.json({ message: "user created", data: newTrip });
+  res.json({ message: "trip created", data: newTrip });
+});
+
+router.get("/get-trips", async(req, res) => {
+  const trips = await TripModel.find({}).populate({ path: "bus_id" });
+  trips.length !== 0
+    ? res.json({ data: trips })
+    : res.json({ message: "no trips" });
 });
 
 module.exports = router;
