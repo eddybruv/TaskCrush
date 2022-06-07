@@ -1,12 +1,14 @@
 .body{
     background: #e9ecef;
+    margin: 0;
+    padding: 0;
 }
 header{
     display: flex;
     justify-content: space-between;
     gap: 20em;
     align-items: center;
-    width: 90vw;
+    width: max(80vw,90%);
     padding-right: 4em;
     padding-left: 7em;
     height: 25vh;
@@ -22,17 +24,17 @@ header{
     justify-content: space-around;
     /* margin-right: 4em; */
 }
+
 h2{
     justify-content: space-around;
 }
+
 .journeys{
     margin-top: 2em;
-    /* margin-bottom: 1.3em; */
-    /* top: 2em; */
-    display: flex;
-    gap: 1em;
-    overflow-y: hidden;
-    overflow-x: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-inline: 1rem;
 }
 h1{
     color: #000;

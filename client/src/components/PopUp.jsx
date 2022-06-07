@@ -1,7 +1,10 @@
 import React from 'react'
 import './componentStyles/PopUp.css'
 
-const PopUp = () => {
+const PopUp = ({ closeModal, tripDetails }) => {
+
+    console.log(tripDetails);
+
   return (
     <div className='dark'>
      
@@ -24,48 +27,19 @@ const PopUp = () => {
                                 <h4>Booked</h4>
                             </div>
                         </div>
-                        <div className="seat-row">
+                        {
+                            [...Array(4)].map(
+                                (item, i) => {
+                                return <div className="seat-row">
                             <div className="seat green"></div>
                             <div className="seat"></div>
                             <div className="space"></div>
                             <div className="seat"></div>
                             <div className="seat"></div>
                         </div>
-                        <div className="seat-row">
-                            <div className="seat"></div>
-                            <div className="seat green"></div>
-                            <div className="space"></div>
-                            <div className="seat"></div>
-                            <div className="seat"></div>
-                        </div>
-                        <div className="seat-row">
-                            <div className="seat"></div>
-                            <div className="seat"></div>
-                            <div className="space green"></div>
-                            <div className="seat green"></div>
-                            <div className="seat"></div>
-                        </div>
-                        <div className="seat-row">
-                            <div className="seat"></div>
-                            <div className="seat"></div>
-                            <div className="space"></div>
-                            <div className="seat"></div>
-                            <div className="seat"></div>
-                        </div>
-                        <div className="seat-row">
-                            <div className="seat"></div>
-                            <div className="seat"></div>
-                            <div className="space"></div>
-                            <div className="seat"></div>
-                            <div className="seat"></div>
-                        </div>
-                        <div className="seat-row">
-                            <div className="seat"></div>
-                            <div className="seat"></div>
-                            <div className="space green"></div>
-                            <div className="seat"></div>
-                            <div className="seat"></div>
-                        </div>
+                                }
+                            )
+                        }
                     </div>
                     
                 </div>
@@ -73,13 +47,17 @@ const PopUp = () => {
                     <h3>Choose a payment method</h3>
                     <div className="payment">
                         <div className="choice">
-                            <input type="radio" />
+                            <input type="radio" name="payment"/>
                             <div className="img"></div>
                         </div>
                         <div className="choice">
-                            <input type="radio" />
+                            <input type="radio"name="payment" />
                             <div className="img2"></div>
                         </div>
+                    </div>
+                    <div className='options'>
+                        <a className='btn submit'>Book</a>
+                        <a className='btn cancel' onClick={closeModal}>Cancel</a>
                     </div>
                 </div>
             </div>

@@ -3,9 +3,8 @@ import './componentStyles/ticket.css'
 import PopUp from './PopUp';
 
 
-const Ticket = ({location, destination, price, busNum, timeOfDay,timeOfDeparture, dateOfDeparture}) => {
+const AdminTicket = ({location, destination, price, busNum, timeOfDay,timeOfDeparture, dateOfDeparture}) => {
  
-  const [showModal, setShowModal] = useState(false);
   const tripDetails = {
     location,
     destination,
@@ -31,11 +30,10 @@ const Ticket = ({location, destination, price, busNum, timeOfDay,timeOfDeparture
         <div className="left">
           <h3>Departure time: <br /><br /> {timeOfDeparture}</h3>
           <label htmlFor="">{price}Frs</label>
-          <button onClick={() => setShowModal(true)}>Book</button>
+          <button className='cancel'>Cancel Trip</button>
         </div>
-        { showModal && <PopUp closeModal={() => setShowModal(false)} tripDetails={tripDetails} /> }
     </div>
   )
 }
 
-export default Ticket
+export default AdminTicket

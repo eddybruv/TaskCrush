@@ -63,3 +63,15 @@
     font-size: 1.2em;
     color: #8C8989;
 }
+
+.cancel{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    margin-left: 2em;
+}
+
+.cancel:hover{
+    background-color: white !important;
+    color: #BE3636;
+    border-color: #BE3636;
+}
