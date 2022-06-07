@@ -1,4 +1,4 @@
-section{
+.section{
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -6,6 +6,7 @@ section{
     justify-content: center;
     align-items: center;
     }
+
     .fform{
     /* border: solid 3px red; */
     display: flex;
@@ -34,4 +35,38 @@ section{
     gap: 0.75em;
     }
     
-    
+    .bus-options{
+        font-size: 14px;
+        margin-bottom: 5px;
+        background: inherit;
+        border: 2px solid #ddd;
+        padding: 12px 15px;
+        border-radius: 3px;
+        width: 275px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .busSelect{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        left: 50px;
+    }
+
+    .add-bus{
+        background: #4CAF50;
+        position: relative;
+        left: 15px;
+        top: -9px;
+        border: none;
+        color: white;
+        padding: 3px !important;
+        border-radius: 3px;
+        font-size: 10px;
+        cursor: pointer;
+        margin-top: 10px;
+        /* width: 275px; */
+        outline: none;
+    }

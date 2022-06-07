@@ -6,7 +6,7 @@ const AdminHeader = ({agencyname}) => {
   return (
     <header>
         <h2>{agencyname}</h2>
-        <Button btnText = {"Create Journey"}/>
+        <Button btnText = {"Create Journey"} path="/create-bus" />
         
         {/* <Button btnText = {"Create Journey"} path={"/CreateBus"}/> */}
     </header>
