@@ -6,8 +6,8 @@ const TripSchema = mongoose.Schema(
     departure: String,
     destination: String,
     price: Number,
-    dept_time: Date,
-    arr_time: Date,
+    dept_time: String,
+    arr_time: String,
     reserved_seats: Array,
   },
   {
