@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const express = require("express");
 
 const UserModel = require("../models/User.model");
-const res = require("express/lib/response");
 const BookModel = require("../models/Book.model");
 const router = express.Router();
 
@@ -11,12 +10,12 @@ router.post("/create-user", (req, res) => {
   const newUser = new UserModel({ firstName, lastName, email, password });
   newUser.save();
 
-  res.json({ message: "user create", data: data });
+  res.json({ message: "user create", data: newUser });
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const userFound = UserModel.find({ email, password });
+  const userFound = await UserModel.findOne({ email, password });
 
   userFound
     ? res.json({ message: "user found", data: userFound })
