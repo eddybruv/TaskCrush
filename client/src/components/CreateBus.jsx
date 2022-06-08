@@ -4,15 +4,17 @@ import Button from "./Button";
 import "../components/componentStyles/CreateBus.css";
 import AddBus from "./AddBus";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateBus = () => {
-
+  const navigate = useNavigate();
   const [location, setLocation] = React.useState("");
   const [destination, setDestination] = React.useState("");
   const [price, setPrice] = React.useState("");
   const [busNum, setBusNum] = React.useState("");
   const [timeOfDay, setTimeOfDay] = React.useState("");
   const [timeOfDeparture, setTimeOfDeparture] = React.useState("");
+  const [date, setDate] = useState("");
 
   const [buses, setBuses] = useState(null);
 
@@ -31,7 +33,9 @@ const CreateBus = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("/api/bus/get-buses").then((data) => setBuses(data.data.data));
+      await axios
+        .get("/api/bus/get-buses")
+        .then((data) => setBuses(data.data.data));
     };
 
     fetchData();
@@ -48,8 +52,10 @@ const CreateBus = () => {
       dept_time: timeOfDeparture,
       arr_time: timeOfDay,
       reserved_seats: [],
+      date,
     });
-  }
+    navigate("/admin-dashboard")
+  };
 
   return (
     <div className="section">
@@ -82,6 +88,7 @@ const CreateBus = () => {
               value={price}
               setState={setPrice}
             />
+            <CustomInputs type="date" value={date} setState={setDate} />
 
             <div className="busSelect">
               <select
