@@ -2,33 +2,33 @@ const mongoose = require("mongoose");
 const express = require("express");
 
 const UserModel = require("../models/User.model");
-const res = require("express/lib/response");
 const BookModel = require("../models/Book.model");
 const router = express.Router();
 
-router.post("/create-user", (req, res) => {
+router.post("/create-user", async(req, res) => {
   const { firstName, lastName, email, password } = req.body;
-  const newUser = new UserModel({ firstName, lastName, email, password });
+  const newUser = await new UserModel({ firstName, lastName, email, password });
   newUser.save();
 
-  res.json({ message: "user create", data: data });
+  res.json({ message: "user create", data: newUser });
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const userFound = UserModel.find({ email, password });
+  const userFound = await UserModel.findOne({ email, password });
 
   userFound
     ? res.json({ message: "user found", data: userFound })
     : res.json({ message: "user not found" });
 });
 
-router.post("/book-trip", (req, res) => {
+router.post("/book-trip", async (req, res) => {
   const {user_id, trip_id} =req.body;
-  const newBook = new BookModel({user_id, trip_id});
+  const newBook = await new BookModel({user_id, trip_id});
   newBook.save();
 
   res.json({message: "book created", data: newBook});
 })
 
 module.exports = router;
+ 

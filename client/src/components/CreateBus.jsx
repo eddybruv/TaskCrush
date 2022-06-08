@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CustomInputs from "../components/CustomInputs";
 import Button from "./Button";
 import "../components/componentStyles/CreateBus.css";
 import AddBus from "./AddBus";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateBus = () => {
+  const navigate = useNavigate();
   const [location, setLocation] = React.useState("");
   const [destination, setDestination] = React.useState("");
   const [price, setPrice] = React.useState("");
   const [busNum, setBusNum] = React.useState("");
   const [timeOfDay, setTimeOfDay] = React.useState("");
   const [timeOfDeparture, setTimeOfDeparture] = React.useState("");
+  const [date, setDate] = useState("");
+
+  const [buses, setBuses] = useState(null);
 
   const [showModal, setShowModal] = React.useState(false);
 
@@ -25,6 +31,32 @@ const CreateBus = () => {
     setShowModal(true);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get("/api/bus/get-buses")
+        .then((data) => setBuses(data.data.data));
+    };
+
+    fetchData();
+    console.log(buses);
+  }, [showModal]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await axios.post("/api/trip/create-trip", {
+      bus_id: busNum,
+      departure: location,
+      destination: destination,
+      price: price,
+      dept_time: timeOfDeparture,
+      arr_time: timeOfDay,
+      reserved_seats: [],
+      date,
+    });
+    navigate("/admin-dashboard")
+  };
+
   return (
     <div className="section">
       <section>
@@ -32,17 +64,22 @@ const CreateBus = () => {
           <h1>Create a Journey</h1>
           <form className="busCreationForm" action="">
             <CustomInputs
-              placeholder={"location"}
+              placeholder={"Departure"}
               value={location}
               setState={setLocation}
             />
             <CustomInputs
-              placeholder={"Destinatoin"}
+              placeholder={"Destination"}
               value={destination}
               setState={setDestination}
             />
             <CustomInputs
-              placeholder={"time of Day"}
+              placeholder={"Departure time"}
+              value={timeOfDeparture}
+              setState={setTimeOfDeparture}
+            />
+            <CustomInputs
+              placeholder={"Arrival time"}
               value={timeOfDay}
               setState={setTimeOfDay}
             />
@@ -51,32 +88,31 @@ const CreateBus = () => {
               value={price}
               setState={setPrice}
             />
-            <CustomInputs
-              placeholder={"Time of departure"}
-              value={timeOfDeparture}
-              setState={setTimeOfDeparture}
-            />
+            <CustomInputs type="date" value={date} setState={setDate} />
+
             <div className="busSelect">
               <select
                 className="bus-options"
                 onClick={(e) => setBusNum(e.target.value)}
               >
                 <option value={null}>Select Bus</option>
-                {[245, 125, 25, 427, 365].map((item, index) => (
-                  <option value={item} key={index}>
-                    {item}
-                  </option>
-                ))}
+                {buses !== null
+                  ? buses.map((bus, index) => (
+                      <option value={bus._id} key={index}>
+                        {bus.name}
+                      </option>
+                    ))
+                  : ""}
               </select>
               <button className="add-bus" onClick={handleModal}>
                 Add Bus
               </button>
             </div>
-            <Button btnText={"Submit"} path="/" />
+            <button onClick={handleSubmit}>Create</button>
           </form>
         </div>
       </section>
-      {showModal && <AddBus closeModal = {() => setShowModal(false)}/>}
+      {showModal && <AddBus closeModal={() => setShowModal(false)} />}
     </div>
   );
 };
