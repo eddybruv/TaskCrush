@@ -9,6 +9,7 @@ const TripSchema = mongoose.Schema(
     dept_time: String,
     arr_time: String,
     reserved_seats: Array,
+    date: String,
   },
   {
     timestamps: true,
