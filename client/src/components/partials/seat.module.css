@@ -17,3 +17,12 @@
 .selected:hover{
     background: #02C39A;
 }
+
+.booked{
+    background: crimson;
+    cursor: not-allowed;
+}
+
+.booked:hover{
+    background: crimson;
+}

@@ -27,6 +27,10 @@ const Ticket = ({
     reserved_seats,
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+  }
+
   return (
     <div className="main">
       <div className="right">
@@ -48,7 +52,7 @@ const Ticket = ({
       {showModal && (
         <SeatProvider>
           <PopUp
-            closeModal={() => setShowModal(false)}
+            closeModal={handleClose}
             tripDetails={tripDetails}
           />
         </SeatProvider>

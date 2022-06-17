@@ -3,12 +3,15 @@ import { SeatContext } from "../../SeatContext";
 
 import classes from "./seat.module.css";
 
-const Seat = ({ index }) => {
+const Seat = ({ index, state }) => {
   const [selected, setSelected] = useState(false);
 
   const { seats, setSeats } = useContext(SeatContext);
 
   const handleClick = () => {
+    if(state === 'booked'){
+      return;
+    }
     setSelected((selected) => !selected);
     if (selected) {
       let temp = Array.from(seats);
@@ -21,7 +24,7 @@ const Seat = ({ index }) => {
 
   return (
     <div
-      className={`${classes.seats} ${selected ? classes.selected : ""}`}
+      className={`${classes.seats} ${selected ? classes.selected : ""} ${state === "booked" ? classes.booked : ""}`}
       onClick={handleClick}
     ></div>
   );
