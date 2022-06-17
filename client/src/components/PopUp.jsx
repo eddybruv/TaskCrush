@@ -1,63 +1,79 @@
-import React from "react";
-import SeatProvider from "../SeatContext";
+import React, { useContext, useState, useEffect } from "react";
+import SeatProvider, { SeatContext } from "../SeatContext";
 import "./componentStyles/PopUp.css";
 import Seat from "./partials/Seat";
 
 const PopUp = ({ closeModal, tripDetails }) => {
   console.log(tripDetails);
+  const { seats } = useContext(SeatContext);
+  const [price, setPrice] = useState(0);
+
+  const findPrice = () => {
+    let numOfSeats = seats.length;
+    let total = tripDetails.price * numOfSeats;
+    setPrice(total);
+  };
+
+  useEffect(() => {
+    findPrice();
+  }, [seats]);
 
   return (
-    <SeatProvider>
-    <div className="dark">
-      <div className="containerSecondary">
-        <h2>Book A ticket</h2>
-        <div className="box">
-          <div className="rright">
-            <div className="seatSelection">
-              <div className="code">
-                <div className="meaning">
-                  <div className="seat"></div>
-                  <h4>Selected</h4>
+    <>
+      <div className="dark">
+        <div className="containerSecondary">
+          <h2>Book A ticket</h2>
+          <div className="box">
+            <div className="rright">
+              <div className="seatSelection">
+                <div className="code">
+                  <div className="meaning">
+                    <div className="seat"></div>
+                    <h4>Selected</h4>
+                  </div>
+                  <div className="meaning">
+                    <div className="seat green"></div>
+                    <h4>Available</h4>
+                  </div>
+                  <div className="meaning">
+                    <div className="seat"></div>
+                    <h4>Booked</h4>
+                  </div>
                 </div>
-                <div className="meaning">
-                  <div className="seat green"></div>
-                  <h4>Available</h4>
+                <div className="bus-seats">
+                  {[...Array(tripDetails.bus_id.seats)].map((item, index) => {
+                    return <Seat index={index} />;
+                  })}
                 </div>
-                <div className="meaning">
-                  <div className="seat"></div>
-                  <h4>Booked</h4>
-                </div>
-              </div>
-              <div className="bus-seats">
-                {[...Array(tripDetails.bus_id.seats)].map((item, index) => {
-                  return <Seat index={index} />;
-                })}
               </div>
             </div>
-          </div>
-          <div className="lleft">
-            <h3>Choose a payment method</h3>
-            <div className="payment">
-              <div className="choice">
-                <input type="radio" name="payment" />
-                <div className="img"></div>
+            <div className="lleft">
+              <h3>Choose a payment method</h3>
+              <div className="payment">
+                <div className="choice">
+                  <input type="radio" name="payment" />
+                  <div className="img"></div>
+                </div>
+                <div className="choice">
+                  <input type="radio" name="payment" />
+                  <div className="img2"></div>
+                </div>
               </div>
-              <div className="choice">
-                <input type="radio" name="payment" />
-                <div className="img2"></div>
+              <div className="options">
+                <a className="btn submit">Book</a>
+                <a className="btn cancel" onClick={closeModal}>
+                  Cancel
+                </a>
               </div>
-            </div>
-            <div className="options">
-              <a className="btn submit">Book</a>
-              <a className="btn cancel" onClick={closeModal}>
-                Cancel
-              </a>
+              <div className="price">
+                <h3>Total Price</h3>
+                <p>{price} FCFA</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </SeatProvider>
+    </>
   );
 };
 export default PopUp;
