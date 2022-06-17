@@ -6,7 +6,6 @@ import axios from "axios";
 
 const PopUp = ({ closeModal, tripDetails }) => {
   // console.log(tripDetails);
-
   const user = JSON.parse(sessionStorage.getItem("user"));
   const { seats, setSeats } = useContext(SeatContext);
   const [price, setPrice] = useState(0);
@@ -34,7 +33,12 @@ const PopUp = ({ closeModal, tripDetails }) => {
       _id: tripDetails._id,
       reserved_seats: [...tripDetails.reserved_seats, ...seats],
     });
+    console.log(res1.data);
+    console.log(res2.data);
+    console.log("Setting seats");
     setSeats([]);
+    console.log('seats set');
+    alert("Trip booked successfully");
     closeModal();
   };
 
@@ -48,8 +52,8 @@ const PopUp = ({ closeModal, tripDetails }) => {
               <div className="seatSelection">
                 <div className="code">
                   <div className="meaning">
-                    <div className="seat seat-reserved"></div>
-                    <h4>Reserved</h4>
+                    <div className="seat"></div>
+                    <h4>Available</h4>
                   </div>
                   <div className="meaning">
                     <div className="seat green seat-selected"></div>
@@ -57,12 +61,12 @@ const PopUp = ({ closeModal, tripDetails }) => {
                   </div>
                   <div className="meaning">
                     <div className="seat seat-booked"></div>
-                    <h4>Booked</h4>
+                    <h4>Reserved</h4>
                   </div>
                 </div>
                 <div className="bus-seats">
                   {[...Array(tripDetails.bus_id.seats)].map((item, index) => {
-                    return <Seat key={index} index={index} />;
+                    return <Seat key={index} index={index} state={`${tripDetails.reserved_seats.indexOf(index) == -1 ? 'free' : 'booked' }`}/>;
                   })}
                 </div>
               </div>

@@ -16,7 +16,6 @@ const UserPanel = () => {
         .post("/api/user/get-books", { user_id: user._id })
         .then((data) => console.log(data.data.data));
     };
-
     fetchData();
   }, []);
 
@@ -78,6 +77,7 @@ const UserPanel = () => {
           : ""}
       </div>
       <div className={`userTrips ${showTrips ? "anim" : "hide"}`}>
+        <h4>User Trips</h4>
         <div className="tripsBody">
           {data.map((item, index) => (
             <div className="trip" key={index}>
