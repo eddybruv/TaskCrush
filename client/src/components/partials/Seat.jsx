@@ -17,12 +17,7 @@ const Seat = ({ index }) => {
     } else {
       setSeats([...seats, index]);
     }
-    console.log(seats);
   };
-
-  useEffect(() =>{
-    console.log(seats)
-  }, [seats])
 
   return (
     <div
