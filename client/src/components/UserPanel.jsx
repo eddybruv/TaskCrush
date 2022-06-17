@@ -5,6 +5,7 @@ import Header from "./Header";
 import Ticket from "./Ticket";
 const UserPanel = () => {
   const [trips, setTrips] = useState(null);
+  const [showTrips, setShowTrips] = useState(false);
 
   const data = [
     {
@@ -62,6 +63,24 @@ const UserPanel = () => {
         {trips !== null
           ? trips.map((journey) => <Ticket key={journey.busNum} {...journey} />)
           : ""}
+      </div>
+      <div className={`userTrips ${showTrips ? "anim" : "hide"}`}>
+        <div className="tripsBody">
+          {data.map((item, index) => (
+            <div className="trip" key={index}>
+              <h5>Depature</h5>
+              <p>{item.location}</p>
+              <h5>Arrival</h5>
+              <p>{item.destination}</p>
+              <h5>Number of Seats</h5>
+              <p>{item.busNum}</p>
+            </div>
+          ))}
+        </div>
+        {/* <div className="trip-bg"></div> */}
+      </div>
+      <div className="openTrips" onClick={() => setShowTrips(!showTrips)}>
+        {showTrips? <p>&lArr;</p> : <p>&rArr;</p>}
       </div>
     </div>
   );

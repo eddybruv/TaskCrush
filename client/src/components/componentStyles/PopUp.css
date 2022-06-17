@@ -15,7 +15,7 @@
 }
 .containerSecondary{
     width: 50em;
-    height: 30em;
+    min-height: 30em;
     
     background: #fff;
     border-radius: 1em;
@@ -64,11 +64,15 @@ h4{
     height: 1.2em;
 }
 .seat{
-    width: 2.2em;
-    height: 2.2em;
+    width: 2em;
+    height: 2em;
     border-radius: 0.4em;
     background: #51889F;
+    margin-bottom: 7px;
+    cursor: pointer;
 }
+
+
 .lleft{
     width: 50%;
     height: 79%;
@@ -133,6 +137,11 @@ h3{
 
 .cancel{
     background-color: #BE3636 !important;
+}
+
+.bus-seats{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
 }
 
 @keyframes slideDown{
