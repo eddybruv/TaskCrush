@@ -28,15 +28,15 @@ const PopUp = ({ closeModal, tripDetails }) => {
               <div className="seatSelection">
                 <div className="code">
                   <div className="meaning">
-                    <div className="seat"></div>
+                    <div className="seat seat-reserved"></div>
+                    <h4>Reserved</h4>
+                  </div>
+                  <div className="meaning">
+                    <div className="seat green seat-selected"></div>
                     <h4>Selected</h4>
                   </div>
                   <div className="meaning">
-                    <div className="seat green"></div>
-                    <h4>Available</h4>
-                  </div>
-                  <div className="meaning">
-                    <div className="seat"></div>
+                    <div className="seat seat-booked"></div>
                     <h4>Booked</h4>
                   </div>
                 </div>
