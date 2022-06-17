@@ -28,18 +28,14 @@ const PopUp = ({ closeModal, tripDetails }) => {
       trip_id: tripDetails._id,
       numberOfSeats,
     });
-
+    alert("Trip booked successfully");
+    closeModal();
     let res2 = await axios.post("/api/trip/update-seats", {
       _id: tripDetails._id,
       reserved_seats: [...tripDetails.reserved_seats, ...seats],
     });
-    console.log(res1.data);
-    console.log(res2.data);
-    console.log("Setting seats");
-    setSeats([]);
-    console.log('seats set');
-    alert("Trip booked successfully");
-    closeModal();
+
+    await setSeats([]);
   };
 
   return (
@@ -66,7 +62,17 @@ const PopUp = ({ closeModal, tripDetails }) => {
                 </div>
                 <div className="bus-seats">
                   {[...Array(tripDetails.bus_id.seats)].map((item, index) => {
-                    return <Seat key={index} index={index} state={`${tripDetails.reserved_seats.indexOf(index) == -1 ? 'free' : 'booked' }`}/>;
+                    return (
+                      <Seat
+                        key={index}
+                        index={index}
+                        state={`${
+                          tripDetails.reserved_seats.indexOf(index) == -1
+                            ? "free"
+                            : "booked"
+                        }`}
+                      />
+                    );
                   })}
                 </div>
               </div>
@@ -84,7 +90,9 @@ const PopUp = ({ closeModal, tripDetails }) => {
                 </div>
               </div>
               <div className="options">
-                <a onClick={handleSubmit} className="btn submit">Book</a>
+                <a onClick={handleSubmit} className="btn submit">
+                  Book
+                </a>
                 <a className="btn cancel" onClick={closeModal}>
                   Cancel
                 </a>
