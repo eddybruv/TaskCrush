@@ -40,9 +40,16 @@ router.get("/get-trips", async (req, res) => {
 });
 
 router.post("/delete-trip", async (req, res) => {
-  const {_id} = req.body;
-  const deleteTrip = await TripModel.findOneAndDelete({_id});
-  
-})
+  const { _id } = req.body;
+  const deleteTrip = await TripModel.findOneAndDelete({ _id });
+});
+
+router.post("/update-seats", async (req, res) => {
+  const { _id, reserved_seats } = req.body;
+  const trip = await TripModel.findOneAndUpdate(
+    { _id },
+    { reserved_seats: [...reserved_seats] }
+  );
+});
 
 module.exports = router;

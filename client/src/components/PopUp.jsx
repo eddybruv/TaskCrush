@@ -2,10 +2,13 @@ import React, { useContext, useState, useEffect } from "react";
 import SeatProvider, { SeatContext } from "../SeatContext";
 import "./componentStyles/PopUp.css";
 import Seat from "./partials/Seat";
+import axios from "axios";
 
 const PopUp = ({ closeModal, tripDetails }) => {
-  console.log(tripDetails);
-  const { seats } = useContext(SeatContext);
+  // console.log(tripDetails);
+
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  const { seats, setSeats } = useContext(SeatContext);
   const [price, setPrice] = useState(0);
 
   const findPrice = () => {
@@ -17,6 +20,23 @@ const PopUp = ({ closeModal, tripDetails }) => {
   useEffect(() => {
     findPrice();
   }, [seats]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const numberOfSeats = seats.length;
+    let res1 = await axios.post("/api/user/book-trip", {
+      user_id: user._id,
+      trip_id: tripDetails._id,
+      numberOfSeats,
+    });
+
+    let res2 = await axios.post("/api/trip/update-seats", {
+      _id: tripDetails._id,
+      reserved_seats: [...tripDetails.reserved_seats, ...seats],
+    });
+    setSeats([]);
+    closeModal();
+  };
 
   return (
     <>
@@ -42,7 +62,7 @@ const PopUp = ({ closeModal, tripDetails }) => {
                 </div>
                 <div className="bus-seats">
                   {[...Array(tripDetails.bus_id.seats)].map((item, index) => {
-                    return <Seat index={index} />;
+                    return <Seat key={index} index={index} />;
                   })}
                 </div>
               </div>
@@ -60,7 +80,7 @@ const PopUp = ({ closeModal, tripDetails }) => {
                 </div>
               </div>
               <div className="options">
-                <a className="btn submit">Book</a>
+                <a onClick={handleSubmit} className="btn submit">Book</a>
                 <a className="btn cancel" onClick={closeModal}>
                   Cancel
                 </a>
