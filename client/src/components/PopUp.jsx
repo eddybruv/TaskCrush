@@ -27,10 +27,8 @@ const PopUp = ({ closeModal, tripDetails }) => {
                 </div>
               </div>
               <div className="bus-seats">
-                {[...Array(tripDetails.bus_id.seats)].map((item, i) => {
-                  return (
-                      <Seat />
-                  );
+                {[...Array(tripDetails.bus_id.seats)].map((item, index) => {
+                  return <Seat index={index} />;
                 })}
               </div>
             </div>
