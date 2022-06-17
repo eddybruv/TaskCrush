@@ -1,10 +1,18 @@
-import React,{ useState } from 'react'
-import './componentStyles/ticket.css'
-import PopUp from './PopUp';
+import React, { useState } from "react";
+import SeatProvider from "../SeatContext";
+import "./componentStyles/ticket.css";
+import PopUp from "./PopUp";
 
-
-const Ticket = ({departure, destination, price, arr_time,dept_time, bus_id, date}) => {
- 
+const Ticket = ({
+  departure,
+  destination,
+  price,
+  arr_time,
+  dept_time,
+  bus_id,
+  date,
+  reserved_seats,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const tripDetails = {
     departure,
@@ -13,9 +21,10 @@ const Ticket = ({departure, destination, price, arr_time,dept_time, bus_id, date
     arr_time,
     dept_time,
     bus_id,
-    date
-  }
- 
+    date,
+    reserved_seats,
+  };
+
   return (
     <div className="main">
       <div className="right">
@@ -35,13 +44,15 @@ const Ticket = ({departure, destination, price, arr_time,dept_time, bus_id, date
         <button onClick={() => setShowModal(true)}>Book</button>
       </div>
       {showModal && (
-        <PopUp
-          closeModal={() => setShowModal(false)}
-          tripDetails={tripDetails}
-        />
+        <SeatProvider>
+          <PopUp
+            closeModal={() => setShowModal(false)}
+            tripDetails={tripDetails}
+          />
+        </SeatProvider>
       )}
     </div>
   );
-}
+};
 
-export default Ticket
+export default Ticket;
