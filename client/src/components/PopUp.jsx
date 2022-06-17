@@ -1,4 +1,5 @@
 import React from "react";
+import SeatProvider from "../SeatContext";
 import "./componentStyles/PopUp.css";
 import Seat from "./partials/Seat";
 
@@ -6,6 +7,7 @@ const PopUp = ({ closeModal, tripDetails }) => {
   console.log(tripDetails);
 
   return (
+    <SeatProvider>
     <div className="dark">
       <div className="containerSecondary">
         <h2>Book A ticket</h2>
@@ -55,6 +57,7 @@ const PopUp = ({ closeModal, tripDetails }) => {
         </div>
       </div>
     </div>
+    </SeatProvider>
   );
 };
 export default PopUp;
