@@ -6,6 +6,19 @@ import Ticket from "./Ticket";
 const UserPanel = () => {
   const [trips, setTrips] = useState(null);
   const [showTrips, setShowTrips] = useState(false);
+  const [books, setBooks] = useState(null);
+
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
+  useEffect(() => {
+    const fetchData = () => {
+      axios
+        .post("/api/user/get-books", { user_id: user._id })
+        .then((data) => console.log(data.data.data));
+    };
+
+    fetchData();
+  }, []);
 
   const data = [
     {
@@ -80,7 +93,7 @@ const UserPanel = () => {
         {/* <div className="trip-bg"></div> */}
       </div>
       <div className="openTrips" onClick={() => setShowTrips(!showTrips)}>
-        {showTrips? <p>&lArr;</p> : <p>&rArr;</p>}
+        {showTrips ? <p>&lArr;</p> : <p>&rArr;</p>}
       </div>
     </div>
   );

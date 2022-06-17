@@ -4,6 +4,7 @@ import "./componentStyles/ticket.css";
 import PopUp from "./PopUp";
 
 const Ticket = ({
+  _id,
   departure,
   destination,
   price,
@@ -15,6 +16,7 @@ const Ticket = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const tripDetails = {
+    _id,
     departure,
     destination,
     price,
