@@ -1,5 +1,6 @@
 import React from "react";
 import "./componentStyles/PopUp.css";
+import Seat from "./partials/Seat";
 
 const PopUp = ({ closeModal, tripDetails }) => {
   console.log(tripDetails);
@@ -25,17 +26,13 @@ const PopUp = ({ closeModal, tripDetails }) => {
                   <h4>Booked</h4>
                 </div>
               </div>
-              {[...Array(4)].map((item, i) => {
-                return (
-                  <div className="seat-row">
-                    <div className="seat green"></div>
-                    <div className="seat"></div>
-                    <div className="space"></div>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                  </div>
-                );
-              })}
+              <div className="bus-seats">
+                {[...Array(tripDetails.bus_id.seats)].map((item, i) => {
+                  return (
+                      <Seat />
+                  );
+                })}
+              </div>
             </div>
           </div>
           <div className="lleft">

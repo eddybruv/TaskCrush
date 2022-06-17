@@ -1,0 +1,19 @@
+.seats{
+    width: 2em;
+    height: 2em;
+    border-radius: 0.4em;
+    background: #51889F;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.seats:hover{
+    background: #4da3c8;
+}
+
+.selected{
+    background: #02C39A;
+}
+.selected:hover{
+    background: #02C39A;
+}
