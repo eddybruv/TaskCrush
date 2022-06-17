@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { SeatContext } from "../../SeatContext";
 
 import classes from "./seat.module.css";
@@ -17,7 +17,12 @@ const Seat = ({ index }) => {
     } else {
       setSeats([...seats, index]);
     }
+    console.log(seats);
   };
+
+  useEffect(() =>{
+    console.log(seats)
+  }, [seats])
 
   return (
     <div
