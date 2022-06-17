@@ -24,8 +24,8 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/book-trip", async (req, res) => {
-  const { user_id, trip_id } = req.body;
-  const newBook = await new BookModel({ user_id, trip_id });
+  const { user_id, trip_id, numberOfSeats } = req.body;
+  const newBook = await new BookModel({ user_id, trip_id, numberOfSeats });
   newBook.save();
 
   res.json({ message: "book created", data: newBook });
@@ -33,7 +33,9 @@ router.post("/book-trip", async (req, res) => {
 
 router.post("/get-books", async (req, res) => {
   const { user_id } = req.body;
-  const trips = await BookModel.find({ user_id });
+  const trips = await BookModel.find({ user_id })
+    .populate({ path: "user_id", select: "-password" })
+    .populate({ path: "trip_id" });
 
   trips
     ? res.json({ message: "user found", data: trips })
