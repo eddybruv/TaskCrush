@@ -13,6 +13,7 @@ const Ticket = ({
   bus_id,
   date,
   reserved_seats,
+  refreshPage
 }) => {
   const [showModal, setShowModal] = useState(false);
   const tripDetails = {
@@ -29,6 +30,7 @@ const Ticket = ({
 
   const handleClose = () => {
     setShowModal(false);
+    refreshPage();
   }
 
   return (

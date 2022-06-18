@@ -36,6 +36,8 @@ const PopUp = ({ closeModal, tripDetails }) => {
     });
 
     await setSeats([]);
+    console.log(seats);
+    window.location.reload();
   };
 
   return (
