@@ -66,7 +66,7 @@ const AdminDashboard = ({ BusNum }) => {
           ? trips.map((journey) => <AdminTicket key={journey.busNum} {...journey} />)
           : ""}
       </div>
-      <section>
+      {/* <section>
         <h1>Bus {BusNum} Info</h1>
         <table>
           <tr>
@@ -85,7 +85,7 @@ const AdminDashboard = ({ BusNum }) => {
             <td></td>
           </tr>
         </table>
-      </section>
+      </section> */}
     </div>
   );
 };

@@ -36,11 +36,6 @@ const UserPanel = () => {
   return (
     <div className="cContainer">
       <Header agencyName={"Soar"} />
-      <div className="Ucontainer">
-        {trips !== null
-          ? trips.map((journey) => <Ticket key={journey.busNum} {...journey} refreshPage={() => setRefresh(!refresh)} />)
-          : ""}
-      </div>
       <div className={`userTrips ${showTrips ? "anim" : "hide"}`}>
         <h3>User Trips for {user.firstName}</h3>
         <div className="tripsBody">
@@ -59,6 +54,17 @@ const UserPanel = () => {
       </div>
       <div className="openTrips" onClick={() => setShowTrips(!showTrips)}>
         {showTrips ? <p>&lArr;</p> : <p>&rArr;</p>}
+      </div>
+      <div className="Ucontainer">
+        {trips !== null
+          ? trips.map((journey) => (
+              <Ticket
+                key={journey.busNum}
+                {...journey}
+                refreshPage={() => setRefresh(!refresh)}
+              />
+            ))
+          : ""}
       </div>
     </div>
   );
