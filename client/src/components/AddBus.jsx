@@ -25,9 +25,9 @@ const AddBus = ({ closeModal }) => {
   return (
     <div className="addbody">
       <div className="container">
-        <div className="closeField">
+        {/* <div className="closeField">
           <p onClick={closeModal}>X</p>
-        </div>
+        </div> */}
         <form>
           <h3>Add New Bus</h3>
           <CustomInputs
