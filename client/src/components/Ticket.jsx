@@ -4,6 +4,7 @@ import "./componentStyles/ticket.css";
 import PopUp from "./PopUp";
 
 const Ticket = ({
+  _id,
   departure,
   destination,
   price,
@@ -12,9 +13,11 @@ const Ticket = ({
   bus_id,
   date,
   reserved_seats,
+  refreshPage
 }) => {
   const [showModal, setShowModal] = useState(false);
   const tripDetails = {
+    _id,
     departure,
     destination,
     price,
@@ -24,6 +27,11 @@ const Ticket = ({
     date,
     reserved_seats,
   };
+
+  const handleClose = () => {
+    setShowModal(false);
+    refreshPage();
+  }
 
   return (
     <div className="main">
@@ -46,7 +54,7 @@ const Ticket = ({
       {showModal && (
         <SeatProvider>
           <PopUp
-            closeModal={() => setShowModal(false)}
+            closeModal={handleClose}
             tripDetails={tripDetails}
           />
         </SeatProvider>

@@ -166,6 +166,19 @@ h3 {
     font-size: 1rem;
 }
 
+.seat-reserved {
+    background: black;
+    cursor: not-allowed;
+}
+
+.seat-booked {
+    background: crimson;
+    cursor: not-allowed;
+}
+
+.seat-selected{
+    cursor: not-allowed;
+}
 
 @keyframes slideDown {
     0% {

@@ -54,7 +54,7 @@ const CreateBus = () => {
       reserved_seats: [],
       date,
     });
-    navigate("/admin-dashboard")
+    navigate("/admin-dashboard");
   };
 
   return (
