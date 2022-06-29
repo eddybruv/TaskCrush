@@ -16,6 +16,13 @@ const PopUp = ({ closeModal, tripDetails }) => {
     setPrice(total);
   };
 
+  window.scrollTo(
+    {
+      top: 0,
+      behavior: 'smooth'
+    }
+  );
+
   useEffect(() => {
     findPrice();
   }, [seats]);
