@@ -51,7 +51,7 @@ const PopUp = ({ closeModal, tripDetails }) => {
     <>
       <div className="dark">
         <div className="containerSecondary">
-          <h2>Book A ticket</h2>
+          <h2>Book A ticket Now</h2>
           <div className="box">
             <div className="rright">
               <div className="seatSelection">
