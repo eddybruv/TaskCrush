@@ -9,6 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 const UserRoute = require("./routes/User.route");
 const BusRoute = require("./routes/Bus.route");
@@ -25,6 +26,10 @@ connection.catch(() => console.log("Database not connected"));
 app.use("/api/user", UserRoute);
 app.use("/api/bus", BusRoute);
 app.use("/api/trip", TripRoute);
+
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 const PORT = 5000;
 
